@@ -1,42 +1,101 @@
-Custom PRNG Analysis
+Custom Pseudorandom Number Generator (PRNG) Analysis
 Project Overview
-This project focuses on building a custom pseudorandom number generator (PRNG) using a basic method and evaluating its performance. The custom PRNG is visually and statistically compared with NumPy’s built-in random number generator to assess randomness and uniformity.
+This project implements a Custom Pseudorandom Number Generator (PRNG) using the Linear Congruential Generator (LCG) method. The custom PRNG is analyzed and compared against NumPy’s built-in uniform PRNG to evaluate its quality in terms of randomness and statistical distribution.
 
-Key Features
-Scatter Plots
-Visual comparison of point distribution between the custom PRNG and NumPy's generator
+ Algorithm: Linear Congruential Generator (LCG)
+The Linear Congruential Generator is a classic method for generating sequences of pseudorandom numbers. It uses the following recurrence relation:
 
-Helps detect patterns or clustering that indicate poor randomness
+𝑋
+𝑛
++
+1
+=
+(
+𝑎
+⋅
+𝑋
+𝑛
++
+𝑐
+)
+m
+o
+d
+ 
+ 
+𝑚
+X 
+n+1
+​
+ =(a⋅X 
+n
+​
+ +c)modm
+🔧 Where:
+𝑋
+0
+X 
+0
+​
+ : Initial seed
 
-Histograms
-Display the frequency distribution of X and Y values
+𝑎
+a: Multiplier
 
-Used to evaluate how close the outputs are to a uniform distribution
+𝑐
+c: Increment
 
-Summary Statistics
-Mean and standard deviation calculated for both X and Y values
+𝑚
+m: Modulus
 
-Allows direct comparison of the statistical properties of the two generators
+Each generated number is then normalized to a floating-point value between 0 and 1 by dividing the output by 
+𝑚
+m.
 
- How to Run
-Install Python (version 3.7 or above)
+Features & Visualizations
+1. Scatter Plots
+Displays the (X, Y) pairs generated from both the custom PRNG and NumPy’s uniform PRNG.
 
-Install required libraries:
+Helps visualize the spread and detect any repetitive patterns or clustering in the custom generator.
+
+2. Histograms
+Shows the distribution of generated X and Y values separately.
+
+Useful to assess the uniformity of the output — ideally, a uniform distribution should have a flat histogram.
+
+3. Summary Statistics
+Calculates the mean and standard deviation for each set of values (X and Y).
+
+These metrics indicate how closely the output matches a uniform distribution in the [0, 1) range:
+
+Ideal mean ≈ 0.5
+
+Ideal standard deviation ≈ 0.29
+
+How to Run the Project
+Prerequisites
+Python 3.7 or higher
+
+Install the required libraries:
 pip install numpy matplotlib
 
-Run the script:
+Running the Script
+Navigate to the project directory and run:
 python src/prng_analysis.py
+Output:
+custom_vs_numpy_prng.pdf: Scatter plot comparison
 
-Output Includes
-Two scatter plots saved as custom_vs_numpy_prng.pdf
+custom_prng_histograms.pdf: Histogram visualization
 
-Four histograms saved as custom_prng_histograms.pdf
-
-Console output with mean and standard deviation of X and Y values
+Console output with statistical summary
 
 Learning Outcomes
-Understand the behavior and limitations of simple PRNGs
+By completing this project, you will:
 
-Learn how to evaluate random number generators using visual tools and statistics
+Understand how the Linear Congruential Generator (LCG) works
 
-Compare a custom-built generator to a standard, reliable library implementation
+Learn how to build and use a simple custom PRNG
+
+Gain experience in visualizing and statistically analyzing pseudorandom sequences
+
+Recognize the limitations of basic PRNGs compared to standard library implementations
